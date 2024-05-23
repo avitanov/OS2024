@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  udp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-udpServer
+    ports:
+      - "7000:7000"
+    networks:
+      - server-client-udp-network
+    environment:
+      - SERVER_NAME=udp-server
+      - SERVER_PORT=7000
+  udp-client:
+    build:
+      context: .
+      dockerfile: Dockerfile-udpClient
+    environment:
+      - SERVER_NAME=udp-server
+      - SERVER_PORT=7000
+    deploy:
+      replicas: 5
+    networks:
+      - server-client-udp-network
+  tcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-tcpServer
+    ports:
+      - "7050:7050"
+    environment:
+      - SERVER_NAME=tcp-server
+      - SERVER_PORT=7050
+    networks:
+      - server-client-tcp-network
+  tcp-client:
+    build:
+      context: .
+      dockerfile: Dockerfile-tcpClient
+    environment:
+      - SERVER_NAME=tcp-server
+      - SERVER_PORT=7050
+    deploy:
+      replicas: 5
+    networks:
+      - server-client-tcp-network
+
+
+networks:
+  server-client-udp-network:
+    driver: bridge
+  server-client-tcp-network:
+    driver: bridge
