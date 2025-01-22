@@ -52,8 +52,9 @@ public class UDPServer extends Thread {
     }
 
     public static void main(String[] args) {
-        String port=System.getenv("SERVER_PORT");
-        UDPServer server = new UDPServer(Integer.parseInt(port));
+//        String port=System.getenv("SERVER_PORT");
+//        UDPServer server = new UDPServer(Integer.parseInt(port));
+        UDPServer server = new UDPServer(7000);
         server.start();
     }
 }

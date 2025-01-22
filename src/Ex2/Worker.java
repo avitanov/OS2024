@@ -53,7 +53,7 @@ public class Worker extends Thread{
                 writer.flush();
             }
             else{
-                writer.write("You are not logged in!\n");
+                writer.write("You are not logged in!\n\n");
                 writer.flush();
                 this.socket.close();
             }

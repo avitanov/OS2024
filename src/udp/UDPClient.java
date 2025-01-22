@@ -48,7 +48,7 @@ public class UDPClient extends Thread {
     public static void main(String[] args) {
         String port=System.getenv("SERVER_PORT");
         String name=System.getenv("SERVER_NAME");
-        UDPClient client = new UDPClient(name, Integer.parseInt(port), "VASIL");
+        UDPClient client = new UDPClient(name, Integer.parseInt(port), "Hello :)");
         client.start();
     }
 }
